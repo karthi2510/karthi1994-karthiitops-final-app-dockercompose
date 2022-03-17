@@ -1,0 +1,19 @@
+
+version: '3'
+services:
+  karthiitops-dockercontainer-mysql:
+    image: 'mysql:latest'
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_USER=karthi
+      - MYSQL_PASSWORD=12345678910
+      - MYSQL_DATABASE=karthiitops
+    ports:
+      - "3307:3306"
+  karthi-final-app:
+    image: karthi1994/karthiitops-final-app:v1
+    ports:
+      - "9000:8090"
+    links:
+      - karthiitops-dockercontainer-mysql
